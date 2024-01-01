@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Food Database</title>
+</head>
+
+<body>
+  <header>
+    <a href="index.html">Food Database</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dishes.html">Dishes</a></li>
+        <li><a href="foodReport.html">Food Report</a></li>
+        <li><a href="foodTips.html">Cooking Tips</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Food Details</h1>
+    <section id="updatedDetails">
+
+
+    </section>
+
+  </main>
+  <script>
+    let foodItems = [
+      {
+        id: '1',
+        name: 'Pizza',
+        cuisine: 'Italian',
+        ingredients: 'Dough, Tomato Sauce, Cheese, Toppings',
+        details: 'A classic Italian dish loved worldwide.'
+      },
+      {
+        id: '2',
+        name: 'Sushi',
+        cuisine: 'Japanese',
+        ingredients: 'Rice, Fish, Seaweed, Vegetables',
+        details: 'Delicious Japanese dish made with vinegared rice and various ingredients.'
+      },
+      {
+        id: '3',
+        name: 'Tacos',
+        cuisine: 'Mexican',
+        ingredients: 'Tortillas, Meat, Salsa, Toppings',
+        details: 'A popular Mexican street food, filled with flavorful ingredients.'
+      },
+      {
+        id: '4',
+        name: 'Pasta Carbonara',
+        cuisine: 'Italian',
+        ingredients: 'Pasta, Eggs, Cheese, Bacon',
+        details: 'A classic Roman pasta dish with creamy egg and cheese sauce.'
+      },
+      {
+        id: '5',
+        name: 'Chocolate Cake',
+        cuisine: 'Dessert',
+        ingredients: 'Flour, Eggs, Sugar, Cocoa, Chocolates',
+        details: 'Indulgent dessert loved by chocolate enthusiasts.'
+      }
+    ];
+
+
+
+/* 
+    let url = new URL (window.location.href)
+    let getId = url.searchParams.get('id')
+    console.log(url)
+    console.log(getId)
+ */
+    function getIdParameter(id){
+      let url = new URL (window.location.href)
+      return url.searchParams.get(id)
+    }
+    let currentId = getIdParameter('id')
+
+    let newId;
+    for(let i = 0; i < foodItems.length; i++ ){
+      if(foodItems[i].id === currentId ){
+        newId = foodItems[i]
+      }
+    }
+    console.log(newId)
+
+
+    let dishDetailElement = document.getElementById('updatedDetails')
+
+    if(newId){
+      dishDetailElement.innerHTML = `
+      <h2>${newId.name}</h2>
+      <p><strong>Cuisine: </strong>${newId.cuisine}</p>
+      <p><strong>Ingredients: </strong>${newId.ingredients}</p>
+      <p><strong>Details: </strong>${newId.details}</p>
+      `
+    } else {
+      dishDetailElement.innerHTML = 'Dish not found'
+    }
+  </script>
+</body>
+
+</html>
